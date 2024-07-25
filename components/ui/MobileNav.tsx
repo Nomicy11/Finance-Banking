@@ -1,23 +1,24 @@
 'use client'
 import React from 'react'
 import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-  } from "@/components/ui/sheet"
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import Image from 'next/image';
 import { sidebarLinks } from '@/constants';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-  
-const MobileNav = ({user}:
-    MobileNavProps) => {
-    const pathname = usePathname();
+import Footer from '../Footer';
+
+const MobileNav = ({ user }:
+  MobileNavProps) => {
+  const pathname = usePathname();
   return (
     <section className="w-full max-w-[264px]">
       <Sheet>
@@ -56,16 +57,16 @@ const MobileNav = ({user}:
                     pathname.startsWith(`${item.route}/`);
                   return (
                     <SheetClose asChild key={item.route}>
-                        
-                    
-                    <Link
-                      href={item.route}
-                      key={item.label}
-                      className={cn("mobilenav-sheet_close w-full", {
-                        "bg-bank-gradient": isActive,
-                      })}
-                    >
-                      
+
+
+                      <Link
+                        href={item.route}
+                        key={item.label}
+                        className={cn("mobilenav-sheet_close w-full", {
+                          "bg-bank-gradient": isActive,
+                        })}
+                      >
+
                         <Image
                           src={item.imgURL}
                           alt={item.label}
@@ -75,25 +76,25 @@ const MobileNav = ({user}:
                             "brightness-[3] invert-0": isActive,
                           })}
                         />
-                  
-                      <p
-                        className={cn("text-16 font-semibold text-black-2", {
-                          "text-white": isActive,
-                        })}
-                      >
-                        {item.label}
-                      </p>
-                      
-                    </Link>
+
+                        <p
+                          className={cn("text-16 font-semibold text-black-2", {
+                            "text-white": isActive,
+                          })}
+                        >
+                          {item.label}
+                        </p>
+
+                      </Link>
                     </SheetClose>
                   )
                 })}
 
                 USER
-                
+
               </nav>
             </SheetClose>
-            FOOTER
+            <Footer user = {user} type="mobile" />
           </div>
         </SheetContent>
       </Sheet>
